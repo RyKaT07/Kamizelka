@@ -1,0 +1,13 @@
+[Unit]
+Description=Kamizelka service
+After=network.target
+
+[Service]
+User=admin
+WorkingDirectory=/home/admin/admin
+ExecStart=/usr/bin/python3 /home/pi/admin/src/main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
