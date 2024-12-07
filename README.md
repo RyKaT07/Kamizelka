@@ -12,8 +12,8 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 
 1. **Sklonuj repozytorium**:
    ```bash
-   git clone https://github.com/RyKaT07/odruch_zostanie.git /home/pi/odruch
-   cd /home/pi/odruch
+   git clone https://github.com/RyKaT07/odruch_zostanie.git /home/nazwa_uzytkownika/odruch
+   cd /home/nazwa_uzytkownika/odruch
    ```
 
 2. **Zainstaluj wymagane biblioteki Python**:
@@ -29,15 +29,15 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 3. **Skopiuj plik serwisu systemowego**:
    Plik serwisu `kamizelka.service` znajduje się w repozytorium w katalogu projektu. Skopiuj go do odpowiedniego miejsca:
    ```bash
-   sudo cp /home/pi/odruch/kamizelka.service /etc/systemd/system/
+   sudo cp /home/nazwa_uzytkownika/odruch/kamizelka.service /etc/systemd/system/
    ```
    Plik serwisu został przygotowany tak, aby działał poprawnie, ale jeśli lokalizacja Twojego repozytorium różni się, zaktualizuj w pliku ścieżki:
    ```ini
-   WorkingDirectory=/home/pi/odruch
-   ExecStart=/usr/bin/python3 /home/pi/odruch/src/main.py
+   WorkingDirectory=/home/nazwa_uzytkownika/odruch
+   ExecStart=/usr/bin/python3 /home/nazwa_uzytkownika/odruch/src/main.py
    ```
 
-   Jeśli Twoje repozytorium znajduje się w innej lokalizacji, zamień `/home/pi/odruch` na pełną ścieżkę do Twojego projektu.
+   Jeśli Twoje repozytorium znajduje się w innej lokalizacji, zamień `/home/nazwa_uzytkownika/odruch` na pełną ścieżkę do Twojego projektu.
 
 4. **Aktywuj serwis**:
    Przeładuj konfigurację systemd i aktywuj serwis:
@@ -55,7 +55,7 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 
 ## Struktura projektu
 ```
-/home/pi/odruch/
+/home/nazwa_uzytkownika/odruch/
 │
 ├─ src/
 │   ├─ main.py           # Główny skrypt aplikacji
@@ -73,7 +73,7 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 ## Logowanie
 Logi działania serwisu można znaleźć w pliku:
 ```
-/home/pi/odruch/logs/service.log
+/home/nazwa_uzytkownika/odruch/logs/service.log
 ```
 
 Możesz też sprawdzić logi za pomocą `journalctl`:
