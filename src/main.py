@@ -60,7 +60,7 @@ def ReadTag():
 if __name__=="__main__":
     # Inicjalizcja wyswietlacza
     lcd = character_lcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows)
-    lcd.message = "  Menti Sense || Odruch zostanie \n Ladowanie" 
+    lcd.message = "  Menti Sense \n Ladowanie" 
 
     logging.basicConfig(
     filename='../logs/service.log',   # Plik do logowania
