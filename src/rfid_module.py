@@ -1,15 +1,17 @@
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
-reader = SimpleMFRC522()
+def WaitForTag():
+    reader = SimpleMFRC522()
+    try:
+        print("Przyłóż tag RFID...")
+        while uid is "" and text is "":
+            uid, text = reader.read()  # Odczyt UID i zapisanych danych
+            print(f"UID: {uid}")
+            print(f"Tekst: {text}")
+    except KeyboardInterrupt:
+        print("Zamykanie programu...")
+    finally:
+        GPIO.cleanup()
 
-try:
-    print("Przyłóż tag RFID...")
-    while True:
-        uid, text = reader.read()  # Odczyt UID i zapisanych danych
-        print(f"UID: {uid}")
-        print(f"Tekst: {text}")
-except KeyboardInterrupt:
-    print("Zamykanie programu...")
-finally:
-    GPIO.cleanup()
+    return uid
