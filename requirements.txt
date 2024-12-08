@@ -2,5 +2,5 @@ adafruit-circuitpython-dht
 adafruit-circuitpython-charlcd
 digitalio
 board
-pi-rc522
+mfrc522
 RPi.GPIO
