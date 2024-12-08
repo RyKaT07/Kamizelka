@@ -3,8 +3,6 @@ import digitalio
 from board import D27, D17, D0, D5, D6, D13, D19, D26
 import time
 import adafruit_character_lcd.character_lcd as character_lcd
-from mfrc522 import SimpleMFRC522
-from rfid_module import WaitForTag
 
 Darek = "192463859248"
 nieznany_uzytkownik = "86474552968"
@@ -18,6 +16,21 @@ lcd_d4 = digitalio.DigitalInOut(D6)
 
 lcd_columns = 16
 lcd_rows = 2
+
+def WaitForTag():
+    reader = SimpleMFRC522()
+    try:
+        print("Przyłóż tag RFID...")
+        while uid == "" and text == "":
+            uid, text = reader.read()  # Odczyt UID i zapisanych danych
+            print(f"UID: {uid}")
+            print(f"Tekst: {text}")
+    except KeyboardInterrupt:
+        print("Zamykanie programu...")
+    finally:
+        GPIO.cleanup()
+
+    return uid
 
 if __name__=="__main__":
     # Inicjalizcja wyswietlacza
@@ -39,6 +52,7 @@ if __name__=="__main__":
 time.sleep(2)
 lcd.clear()
 
+"""
 while True:
     try:
         print("{}, {}".format(dht_device.temperature, dht_device.humidity))
@@ -46,3 +60,4 @@ while True:
     except:
         print("Error in read")
     time.sleep(0.5)
+"""
