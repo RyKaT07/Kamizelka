@@ -1,5 +1,6 @@
 import adafruit_dht
 import digitalio
+import RPi.GPIO as GPIO
 from board import D27, D17, D0, D5, D6, D13, D19, D26
 import time
 from mfrc522 import SimpleMFRC522
@@ -8,6 +9,7 @@ import adafruit_character_lcd.character_lcd as character_lcd
 Darek = "192463859248"
 nieznany_uzytkownik = "86474552968"
 
+available_tags = [Darek, nieznany_uzytkownik]
 lcd_rs = digitalio.DigitalInOut(D0)
 lcd_en = digitalio.DigitalInOut(D5)
 lcd_d7 = digitalio.DigitalInOut(D26)
@@ -46,9 +48,18 @@ if __name__=="__main__":
     dht_device = adafruit_dht.DHT11(D27)
 
     tag = WaitForTag()
-    if tag == Darek:
+    if tag in available_tags:
         lcd.clear()
         lcd.message = "  Witaj Darku \nJak ci minął dzień?"
+        zalogowany = True
+        time.sleep(4)
+        while zalogowany:
+            try:
+                print("{}, {}".format(dht_device.temperature, dht_device.humidity))
+                lcd.message="T={}\nH={}".format(dht_device.temperature, dht_device.humidity)
+            except:
+                print("Error in read")
+            time.sleep(0.5)
 
 time.sleep(2)
 lcd.clear()
