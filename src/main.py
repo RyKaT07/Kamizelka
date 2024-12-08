@@ -44,7 +44,7 @@ if __name__=="__main__":
     lcd.message = "  Menti Sense || Odruch zostanie \n Ladowanie" 
 
     logging.basicConfig(
-    filename='service.log',   # Plik do logowania
+    filename='../logs/service.log',   # Plik do logowania
     level=logging.INFO,       # Poziom logowania (INFO, DEBUG, ERROR itp.)
     format='%(asctime)s - %(levelname)s - %(message)s'
     )
