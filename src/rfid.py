@@ -1,4 +1,7 @@
 from pirc522 import RFID
+from RPi.GPIO as GPIO
+
+GPIO.setwarnings(False)
 
 rdr = RFID()
 
