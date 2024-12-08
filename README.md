@@ -1,4 +1,4 @@
-# My Raspberry Pi Project
+# Projekt kamizelki
 
 Jest to projekt innowacyjnej kamizelki MentiSense, która wykorzystuje czujniki do określenia stanu zdrowia fizycznego oraz psychicznego użytkownika. 
 Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jego automatyczne uruchamianie po starcie systemu.
@@ -29,12 +29,12 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 3. **Skopiuj plik serwisu systemowego**:
    Plik serwisu `kamizelka.service` znajduje się w repozytorium w katalogu projektu. Skopiuj go do odpowiedniego miejsca:
    ```bash
-   sudo cp /home/nazwa_uzytkownika/odruch/kamizelka.service /etc/systemd/system/
+   sudo cp /home/nazwa_uzytkownika/odruch_zostanie/kamizelka.service /etc/systemd/system/
    ```
    Plik serwisu został przygotowany tak, aby działał poprawnie, ale jeśli lokalizacja Twojego repozytorium różni się, zaktualizuj w pliku ścieżki:
    ```ini
-   WorkingDirectory=/home/nazwa_uzytkownika/odruch
-   ExecStart=/usr/bin/python3 /home/nazwa_uzytkownika/odruch/src/main.py
+   WorkingDirectory=/home/nazwa_uzytkownika/odruch_zostanie
+   ExecStart=/usr/bin/python3 /home/nazwa_uzytkownika/odruch_zostanie/src/main.py
    ```
 
    Jeśli Twoje repozytorium znajduje się w innej lokalizacji, zamień `/home/nazwa_uzytkownika/odruch` na pełną ścieżkę do Twojego projektu.
@@ -55,7 +55,7 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 
 ## Struktura projektu
 ```
-/home/nazwa_uzytkownika/odruch/
+/home/nazwa_uzytkownika/odruch_zostanie/
 │
 ├─ src/
 │   ├─ main.py           # Główny skrypt aplikacji
@@ -73,7 +73,7 @@ Projekt jest skonfigurowany jako serwis systemowy (`systemd`), co pozwala na jeg
 ## Logowanie
 Logi działania serwisu można znaleźć w pliku:
 ```
-/home/nazwa_uzytkownika/odruch/logs/service.log
+/home/nazwa_uzytkownika/odruch_zostanie/logs/service.log
 ```
 
 Możesz też sprawdzić logi za pomocą `journalctl`:
