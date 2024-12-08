@@ -26,6 +26,8 @@ lcd_rows = 2
 def WaitForTag():
     reader = SimpleMFRC522()
     try:
+        uid = ""
+        text = ""
         print("Przyłóż tag RFID...")
         while uid == "" and text == "":
             uid, text = reader.read()  # Odczyt UID i zapisanych danych
