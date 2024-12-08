@@ -82,8 +82,6 @@ if __name__=="__main__":
         lcd.message = "  Menti Sense  \n Przyloz karte" 
         tag = WaitForTag()
         logging.info("Próba autoryzacji.")
-        lcd.clear()
-        lcd.message = "  Menti Sense \n Niezautoryzowany uzytkownik" 
         time.sleep(1)
         if str(tag) in available_tags:
             logging.info("Znaleziono uytkownika")
@@ -107,6 +105,10 @@ if __name__=="__main__":
             lcd.clear()
             lcd.message = "  Zegnaj Darku \nDo zobaczenia"
             time.sleep(2)
+            lcd.clear()
+        elif:
+            lcd.clear()
+            lcd.message = "  Menti Sense \n Niezautoryzowany uzytkownik" 
             lcd.clear()
 
 """
