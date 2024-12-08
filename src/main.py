@@ -68,6 +68,7 @@ if __name__=="__main__":
         lcd.message = "  Witaj Darku \nJak ci minal dzien?"
         zalogowany = True
         time.sleep(4)
+        lcd.clear()
         while zalogowany:
             try:
                 print("{}, {}".format(dht_device.temperature, dht_device.humidity))
