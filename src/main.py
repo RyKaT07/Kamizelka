@@ -62,10 +62,10 @@ if __name__=="__main__":
     lcd.message = "  Menti Sense || Odruch zostanie \n Przyloz karte" 
     tag = WaitForTag()
     logging.info("Próba autoryzacji.")
-    if tag in available_tags:
+    if str(tag) in available_tags:
         logging.info("Znaleziono uytkownika")
         lcd.clear()
-        lcd.message = "  Witaj Darku \nJak ci minął dzień?"
+        lcd.message = "  Witaj Darku \nJak ci minal dzien?"
         zalogowany = True
         time.sleep(4)
         while zalogowany:
