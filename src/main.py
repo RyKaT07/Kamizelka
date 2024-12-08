@@ -48,6 +48,15 @@ def WaitForTag():
 
     return uid
 
+def ReadTag():
+    reader = SimpleMFRC522()
+    try:
+        uid, text = reader.read()  # Odczyt UID i zapisanych danych
+    except KeyboardInterrupt:
+        print("Zamykanie programu...")
+
+    return uid
+
 if __name__=="__main__":
     # Inicjalizcja wyswietlacza
     lcd = character_lcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows)
@@ -72,6 +81,8 @@ if __name__=="__main__":
     lcd.message = "  Menti Sense || Odruch zostanie \n Przyloz karte" 
     tag = WaitForTag()
     logging.info("Próba autoryzacji.")
+    time.sleep(1)
+    lcd.message = "  Menti Sense || Odruch zostanie \n Niezautoryzowany uzytkownik" 
     if str(tag) in available_tags:
         logging.info("Znaleziono uytkownika")
         lcd.clear()
@@ -85,12 +96,16 @@ if __name__=="__main__":
                 print("{}, {}".format(dht_device.temperature, dht_device.humidity))
                 lcd.message="T={}\nH={}".format(dht_device.temperature, dht_device.humidity)
                 logging.info("Zmierzona temperatura {}, {}".format(dht_device.temperature, dht_device.humidity))
+                new_tag = ReadTag()
+                if str(new_tag) == str(tag):
+                    zalogowany = False
             except:
                 print("Error in read")
             time.sleep(0.5)
-
-time.sleep(2)
-lcd.clear()
+        lcd.clear()
+        lcd.message = "  Zegnaj Darku \nDo zobaczenia"
+        time.sleep(2)
+        lcd.clear()
 
 """
 while True:
