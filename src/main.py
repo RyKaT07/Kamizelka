@@ -79,15 +79,16 @@ if __name__=="__main__":
 
     logging.info("Zaincjalizowano czujnik temperatury")
     while True:
-        lcd.message = "  Menti Sense || Odruch zostanie \n Przyloz karte" 
+        lcd.message = "  Menti Sense  \n Przyloz karte" 
         tag = WaitForTag()
         logging.info("Próba autoryzacji.")
+        lcd.clear()
+        lcd.message = "  Menti Sense \n Niezautoryzowany uzytkownik" 
         time.sleep(1)
-        lcd.message = "  Menti Sense || Odruch zostanie \n Niezautoryzowany uzytkownik" 
         if str(tag) in available_tags:
             logging.info("Znaleziono uytkownika")
             lcd.clear()
-            lcd.message = "  Witaj Darku \nJak ci minal dzien?"
+            lcd.message = "  Witaj Darku \nJak sie masz?"
             zalogowany = True
             time.sleep(4)
             lcd.clear()
