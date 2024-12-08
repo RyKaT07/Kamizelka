@@ -2,6 +2,7 @@ import adafruit_dht
 import digitalio
 from board import D27, D17, D0, D5, D6, D13, D19, D26
 import time
+from mfrc522 import SimpleMFRC522
 import adafruit_character_lcd.character_lcd as character_lcd
 
 Darek = "192463859248"
