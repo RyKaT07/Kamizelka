@@ -78,34 +78,35 @@ if __name__=="__main__":
     dht_device = adafruit_dht.DHT11(D27)
 
     logging.info("Zaincjalizowano czujnik temperatury")
-    lcd.message = "  Menti Sense || Odruch zostanie \n Przyloz karte" 
-    tag = WaitForTag()
-    logging.info("Próba autoryzacji.")
-    time.sleep(1)
-    lcd.message = "  Menti Sense || Odruch zostanie \n Niezautoryzowany uzytkownik" 
-    if str(tag) in available_tags:
-        logging.info("Znaleziono uytkownika")
-        lcd.clear()
-        lcd.message = "  Witaj Darku \nJak ci minal dzien?"
-        zalogowany = True
-        time.sleep(4)
-        lcd.clear()
-        pictureTakerDaemon()
-        while zalogowany:
-            try:
-                print("{}, {}".format(dht_device.temperature, dht_device.humidity))
-                lcd.message="T={}\nH={}".format(dht_device.temperature, dht_device.humidity)
-                logging.info("Zmierzona temperatura {}, {}".format(dht_device.temperature, dht_device.humidity))
-                new_tag = ReadTag()
-                if str(new_tag) == str(tag):
-                    zalogowany = False
-            except:
-                print("Error in read")
-            time.sleep(0.5)
-        lcd.clear()
-        lcd.message = "  Zegnaj Darku \nDo zobaczenia"
-        time.sleep(2)
-        lcd.clear()
+    while True:
+        lcd.message = "  Menti Sense || Odruch zostanie \n Przyloz karte" 
+        tag = WaitForTag()
+        logging.info("Próba autoryzacji.")
+        time.sleep(1)
+        lcd.message = "  Menti Sense || Odruch zostanie \n Niezautoryzowany uzytkownik" 
+        if str(tag) in available_tags:
+            logging.info("Znaleziono uytkownika")
+            lcd.clear()
+            lcd.message = "  Witaj Darku \nJak ci minal dzien?"
+            zalogowany = True
+            time.sleep(4)
+            lcd.clear()
+            pictureTakerDaemon()
+            while zalogowany:
+                try:
+                    print("{}, {}".format(dht_device.temperature, dht_device.humidity))
+                    lcd.message="T={}\nH={}".format(dht_device.temperature, dht_device.humidity)
+                    logging.info("Zmierzona temperatura {}, {}".format(dht_device.temperature, dht_device.humidity))
+                    new_tag = ReadTag()
+                    if str(new_tag) == str(tag):
+                        zalogowany = False
+                except:
+                    print("Error in read")
+                time.sleep(0.5)
+            lcd.clear()
+            lcd.message = "  Zegnaj Darku \nDo zobaczenia"
+            time.sleep(2)
+            lcd.clear()
 
 """
 while True:
