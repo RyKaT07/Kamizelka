@@ -35,8 +35,6 @@ def WaitForTag():
             print(f"Tekst: {text}")
     except KeyboardInterrupt:
         print("Zamykanie programu...")
-    finally:
-        GPIO.cleanup()
 
     return uid
 
