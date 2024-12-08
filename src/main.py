@@ -6,8 +6,9 @@ import time
 from mfrc522 import SimpleMFRC522
 import adafruit_character_lcd.character_lcd as character_lcd
 import logging
-
-
+from picamzero import Camera
+from datetime import datetime
+import threading
 
 Darek = "192463859248"
 nieznany_uzytkownik = "86474552968"
@@ -22,6 +23,15 @@ lcd_d4 = digitalio.DigitalInOut(D6)
 
 lcd_columns = 16
 lcd_rows = 2
+
+cam = Camera()
+
+def pictureTakerDaemon():
+    threading.Timer(10.0, pictureTakerDaemon).start()
+    now = datetime.now()
+    filename = "/home/admin/odruch_zostanie2/images/{}.jpg".format(now.strftime("%d-%m-%Y_%H:%M:%S.%f"))
+    cam.take_photo(filename)
+    print("Saved", filename, "photo.")
 
 def WaitForTag():
     reader = SimpleMFRC522()
@@ -69,6 +79,7 @@ if __name__=="__main__":
         zalogowany = True
         time.sleep(4)
         lcd.clear()
+        pictureTakerDaemon()
         while zalogowany:
             try:
                 print("{}, {}".format(dht_device.temperature, dht_device.humidity))
